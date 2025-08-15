@@ -160,4 +160,28 @@ public class DocumentImplDAO implements DocumentDAO {
             throw new RuntimeException("Error fetching all documents", e);
         }
     }
+
+    @Override
+    public List<Document> findOngoingRequests() {
+        String sql = "SELECT * FROM documents WHERE released_date IS NULL";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            return DocumentMapper.mapResultSetToDocumentList(rs);
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching ongoing requests", e);
+        }
+    }
+
+    @Override
+    public List<Document> findCompletedRequests() {
+        String sql = "SELECT * FROM documents WHERE released_date IS NOT NULL";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            return DocumentMapper.mapResultSetToDocumentList(rs);
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching completed requests", e);
+        }
+    }
 }
