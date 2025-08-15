@@ -1,0 +1,2 @@
+1. Create a mapper that accepts Result(coming from jdbc query) and map to entity/class
+2. Create DAO for each entity (acts like a repository), this interacts with the database like querying
