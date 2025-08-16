@@ -22,7 +22,4 @@ public class Document {
     private String contact;
     private LocalDateTime requestedDate;
     private LocalDateTime releaseDate;
-
-
-
 }

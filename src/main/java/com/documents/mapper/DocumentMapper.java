@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+// Mapped the result set to Document object
 public class DocumentMapper {
     public static Document mapResultSetToDocument(ResultSet rs) throws Exception {
         Timestamp releaseTs = rs.getTimestamp("released_date");

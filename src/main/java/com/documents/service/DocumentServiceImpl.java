@@ -36,6 +36,11 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
+    public void setUpTable() {
+        documentDAO.createTable();
+    }
+
+    @Override
     public Document getRequestById(Long id) {
         return documentDAO.findById(id)
                           .orElseThrow(() -> new ResourceNotFoundException("Document with id " + id + " not found"));
@@ -76,4 +81,6 @@ public class DocumentServiceImpl implements DocumentService {
     public List<Document> getAllRequest() {
         return documentDAO.findAll();
     }
+
+
 }

@@ -15,7 +15,7 @@ public class DatabaseConnection {
 
         try {
             connection = DriverManager.getConnection(dbUrl, username, password);
-            System.out.println("Connection established");
+            //System.out.println("Connection established");
         } catch(Exception e) {
             System.out.println("Error: " + e.getMessage());
         }

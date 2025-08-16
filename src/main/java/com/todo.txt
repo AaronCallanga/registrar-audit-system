@@ -1,3 +1,3 @@
 1. Create a mapper that accepts Result(coming from jdbc query) and map to entity/class
 2. Create DAO for each entity (acts like a repository), this interacts with the database like querying
-3. Fetch ongoing request and completed request
+3. maybe implement email field for entity, and sending emails, also document status
