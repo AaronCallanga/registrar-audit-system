@@ -33,7 +33,7 @@ public class DocumentImplDAO implements DocumentDAO {
             ps.executeUpdate();
 
         } catch (Exception e) {
-            System.out.println("Error while creating table: " + e.getMessage());
+            System.out.println("Error while creating table students: " + e.getMessage());
         }
     }
 

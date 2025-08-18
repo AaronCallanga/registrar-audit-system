@@ -13,7 +13,7 @@ public class Main {
     private static final DocumentService documentService = new DocumentServiceImpl(new DocumentImplDAO());
 
     public static void main(String[] args) {
-        documentService.setUpTable();
+        documentService.setUpTable();       // create a class for all the set up
         boolean running = true;
         while (running) {
             printMenu();

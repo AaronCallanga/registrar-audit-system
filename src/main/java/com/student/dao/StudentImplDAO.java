@@ -1,7 +1,10 @@
 package com.student.dao;
 
+import com.config.DatabaseConnection;
 import com.student.model.Student;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +20,13 @@ public class StudentImplDAO implements StudentDAO {
                 "    program VARCHAR(255) NOT NULL,\n" +
                 "    contact VARCHAR(255) NOT NULL\n" +
                 ");";
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error while creating table students: " + e.getMessage());
+        }
     }
 
     @Override
