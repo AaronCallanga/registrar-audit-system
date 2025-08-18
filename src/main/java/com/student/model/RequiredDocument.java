@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @ToString
-public class RequiredDocument {
+public class RequiredDocument { // document required for enrollment
     private Long id;
     private Long studentId;
     private String documentType;
