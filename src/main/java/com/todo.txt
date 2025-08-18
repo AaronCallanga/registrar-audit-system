@@ -1,3 +1,13 @@
 1. Create a mapper that accepts Result(coming from jdbc query) and map to entity/class
 2. Create DAO for each entity (acts like a repository), this interacts with the database like querying
 3. maybe implement email field for entity, and sending emails, also document status
+4. Reporting - Feature: Generate summary reports of requests.
+               Number of requests per month.
+               Average processing time.
+               Most requested document types.
+5. Status Tracking (REQUESTED, PROCESSING, READY_FOR_RELEASE, RELEASED, CANCELLED)
+6. Audit / Activity Log - Domain: AuditLog
+                          Fields: id, action, timestamp, adminUser, documentId, description
+                          Purpose: Track what actions admins took (created request, updated, released, deleted).
+                          Example: "Admin John released document #23 at 2025-08-16 13:45".
+7. Implement Auditing for Enrollment too
