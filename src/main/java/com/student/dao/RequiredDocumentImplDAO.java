@@ -1,7 +1,11 @@
 package com.student.dao;
 
+import com.config.DatabaseConnection;
 import com.student.model.RequiredDocument;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +21,13 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
                 "    submitted_date TIMESTAMP,\n" +
                 "    CONSTRAINT fk_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE\n" +
                 ");";
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error while creating table required_documents: " + e.getMessage());
+        }
     }
 
     @Override
