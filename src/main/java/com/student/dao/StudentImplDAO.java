@@ -9,7 +9,14 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public void createTable() {
-
+        String sql = "CREATE TABLE IF NOT EXISTS students (\n" +
+                "    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n" +
+                "    student_number VARCHAR(255) NOT NULL UNIQUE,\n" +
+                "    name VARCHAR(255) NOT NULL,\n" +
+                "    year_level VARCHAR(255) NOT NULL,\n" +
+                "    program VARCHAR(255) NOT NULL,\n" +
+                "    contact VARCHAR(255) NOT NULL\n" +
+                ");";
     }
 
     @Override

@@ -9,7 +9,7 @@ public class DatabaseConnection {
     private static Connection connection;
 
     public static Connection getConnection() {
-        final String dbUrl = "jdbc:postgresql://localhost:5432/ciicc"; // change database
+        final String dbUrl = "jdbc:postgresql://localhost:5432/registrar"; // change database
         final String username = "postgres";
         final String password = "admin";
 
