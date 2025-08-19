@@ -138,6 +138,14 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
 
     @Override
     public List<RequiredDocument> findAll() {
+        String sql = "SELECT * FROM required_documents";
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+            return RequiredDocumentMapper.mapResultSetToRequiredDocumentList(rs);
+        } catch (Exception e) {
+            System.out.println("Error while finding required documents: " + e.getMessage());
+        }
         return List.of();
     }
 }
