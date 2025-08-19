@@ -98,6 +98,29 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public Optional<Student> save(Student obj) {
+        String sql = """
+                INSERT INTO students (student_number, name, year_level, program, contact)
+                VALUES (?, ?, ?, ?, ?)
+                RETURNING *
+                """;
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, obj.getStudentNumber());
+            ps.setString(2, obj.getName());
+            ps.setString(3, obj.getYearLevel());
+            ps.setString(4, obj.getProgram());
+            ps.setString(5, obj.getContact());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(StudentMapper.mapResultSetToRequiredDocument(rs));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error while saving student: " + e.getMessage());
+        }
         return Optional.empty();
     }
 
