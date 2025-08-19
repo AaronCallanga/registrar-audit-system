@@ -108,6 +108,31 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
 
     @Override
     public Optional<RequiredDocument> save(RequiredDocument obj) {
+        String sql = """
+                INSERT INTO required_documents (student_id, document_type, status, submitted_date)
+                VALUES (?, ?, ?, ?)
+                RETURNING *;
+                """;
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, obj.getStudentId());
+            ps.setString(2, obj.getDocumentType());
+            ps.setString(3, obj.getStatus());
+            if (obj.getSubmittedDate() != null) {
+                ps.setTimestamp(4, Timestamp.valueOf(obj.getSubmittedDate()));
+            } else {
+                ps.setNull(4, java.sql.Types.TIMESTAMP);
+            }
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(RequiredDocumentMapper.mapResultSetToRequiredDocument(rs));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error while saving required document: " + e.getMessage());
+        }
+
         return Optional.empty();
     }
 
