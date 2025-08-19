@@ -5,6 +5,7 @@ import com.documents.mapper.DocumentMapper;
 import com.student.mapper.RequiredDocumentMapper;
 import com.student.model.RequiredDocument;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -93,6 +94,15 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
 
     @Override
     public void deleteById(Long id) {
+        String sql = "DELETE FROM required_documents WHERE id = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error while deleting required document: " + e.getMessage());
+        }
 
     }
 
