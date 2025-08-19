@@ -1,11 +1,14 @@
 package com.student.dao;
 
 import com.config.DatabaseConnection;
+import com.documents.mapper.DocumentMapper;
 import com.student.model.RequiredDocument;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +35,22 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
 
     @Override
     public Optional<RequiredDocument> findById(Long id) {
+        String sql = "SELECT * FROM required_documents WHERE id = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(DocumentMapper.mapResultSetToDocument(rs));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error while finding required document: " + e.getMessage());
+        }
+
         return Optional.empty();
     }
 
