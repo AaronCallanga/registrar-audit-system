@@ -8,7 +8,7 @@ public interface StudentService {
     Student getStudentById(Long id);
     void deleteStudentById(Long id);
     Student enrollStudent(String name, String yearLevel, String program, String contact);
-    Student updateStudentInfo(String name, String yearLevel, String program, String contact);
+    Student updateStudentInfo(Long studentId, String name, String yearLevel, String program, String contact);
     
     List<Student> getAllStudents();
     List<Student> getAllStudentsByYearLevel(String yearLevel);

@@ -41,8 +41,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student updateStudentInfo(String name, String yearLevel, String program, String contact) {
-        return null;
+    public Student updateStudentInfo(Long studentId, String name, String yearLevel, String program, String contact) {
+        Student student = Student.builder()
+                                 .name(name)
+                                 .yearLevel(yearLevel)
+                                 .program(program)
+                                 .contact(contact)
+                                 .build();
+        return studentDAO.updateById(studentId, student)
+                .orElseThrow(() -> new EntityPersistenceException("Failed to update student."));
     }
 
     @Override
