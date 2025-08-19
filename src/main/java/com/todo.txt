@@ -16,3 +16,4 @@
        ex: 1st year -> TOR, BC      changed to 2nd Year -> TOR, BC, GOOD MORAL, F138
        delete this ^                                then save this instead ^        -> linked to user
 10. implement setUpTables in databaseConnection, create objects of each service dao/service and call the create table
+11. enroll student, get the id of the student, use it to save required documents

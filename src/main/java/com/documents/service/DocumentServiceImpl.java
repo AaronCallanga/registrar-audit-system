@@ -1,9 +1,8 @@
 package com.documents.service;
 
 import com.documents.dao.DocumentDAO;
-import com.documents.dao.DocumentImplDAO;
 import com.documents.model.Document;
-import com.exceptions.DocumentPersistenceException;
+import com.exceptions.EntityPersistenceException;
 import com.exceptions.ResourceNotFoundException;
 
 import java.time.LocalDateTime;
@@ -51,7 +50,7 @@ public class DocumentServiceImpl implements DocumentService {
                                        .releaseDate(null)
                                        .build();
         return documentDAO.save(newDocument)
-                          .orElseThrow(() -> new DocumentPersistenceException("Failed to save the document request."));
+                          .orElseThrow(() -> new EntityPersistenceException("Failed to save the document request."));
     }
 
     @Override
@@ -63,7 +62,7 @@ public class DocumentServiceImpl implements DocumentService {
         document.setContact(contact);
 
         return documentDAO.updateById(documentId, document)
-                .orElseThrow(() -> new DocumentPersistenceException("Failed to update the document request."));
+                .orElseThrow(() -> new EntityPersistenceException("Failed to update the document request."));
     }
 
 

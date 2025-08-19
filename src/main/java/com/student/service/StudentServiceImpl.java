@@ -1,25 +1,28 @@
 package com.student.service;
 
+import com.exceptions.EntityPersistenceException;
+import com.exceptions.ResourceNotFoundException;
+import com.student.dao.StudentDAO;
 import com.student.model.Student;
 
 import java.util.List;
+import java.util.UUID;
 
 public class StudentServiceImpl implements StudentService {
 
+    private final StudentDAO studentDAO;
+
+    public StudentServiceImpl(StudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
+    }
+
     @Override
     public Student getStudentById(Long id) {
-        return null;
+        return studentDAO.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student with id " + id + " not found"));
     }
 
-    @Override
-    public void deleteStudentById(Long id) {
 
-    }
-
-    @Override
-    public Student enrollStudent(String name, String yearLevel, String program, String contact) {
-        return null;
-    }
 
     @Override
     public Student updateStudentInfo(String name, String yearLevel, String program, String contact) {
