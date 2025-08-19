@@ -4,6 +4,8 @@ import com.student.model.Student;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentMapper {
     public static Student mapResultSetToRequiredDocument(ResultSet rs) throws Exception {
@@ -16,6 +18,12 @@ public class StudentMapper {
                 .contact(rs.getString("contact"))
                 .build();
     }
-
+    public static List<Student> mapResultSetToRequiredDocumentList(ResultSet rs) throws Exception {
+        List<Student> studentList = new ArrayList<>();
+        while (rs.next()) {
+            studentList.add(mapResultSetToRequiredDocument(rs));
+        }
+        return studentList;
+    }
 
 }
