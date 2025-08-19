@@ -11,3 +11,7 @@
                           Purpose: Track what actions admins took (created request, updated, released, deleted).
                           Example: "Admin John released document #23 at 2025-08-16 13:45".
 7. Implement Auditing for Enrollment too
+8. MAke student number a random uuid
+9. If a student year level updated, it should delete all the required documents and change it to a specific year level
+       ex: 1st year -> TOR, BC      changed to 2nd Year -> TOR, BC, GOOD MORAL, F138
+       delete this ^                                then save this instead ^        -> linked to user
