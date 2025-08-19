@@ -1,6 +1,7 @@
 package com.student.dao;
 
 import com.config.DatabaseConnection;
+import com.student.mapper.StudentMapper;
 import com.student.model.Student;
 
 import java.sql.Connection;
@@ -38,7 +39,7 @@ public class StudentImplDAO implements StudentDAO {
             PreparedStatement ps = connection.prepareStatement(sql)) {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-
+                    return Optional.of(StudentMapper.mapResultSetToRequiredDocument(rs));
                 }
             }
         } catch (Exception e) {
