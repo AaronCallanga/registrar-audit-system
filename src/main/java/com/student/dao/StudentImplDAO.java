@@ -5,6 +5,7 @@ import com.student.model.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,19 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public Optional<Student> findById(Long id) {
+        String sql = "SELECT * FROM students WHERE id = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error while finding student: " + e.getMessage());
+        }
+
         return Optional.empty();
     }
 
