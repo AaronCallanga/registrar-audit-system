@@ -19,6 +19,6 @@ public class RequiredDocument { // document required for enrollment
     private Long id;
     private Long studentId;
     private String documentType;
-    private String status;
+    private String status;      // SUBMITTED, MISSING, PENDING VERIFICATION(optional)
     private LocalDateTime submittedDate;
 }
