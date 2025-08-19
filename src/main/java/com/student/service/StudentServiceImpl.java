@@ -27,7 +27,18 @@ public class StudentServiceImpl implements StudentService {
         studentDAO.deleteById(id);
     }
 
-
+    @Override
+    public Student enrollStudent(String name, String yearLevel, String program, String contact) {
+        Student student = Student.builder()
+                                 .studentNumber(UUID.randomUUID().toString())
+                                 .name(name)
+                                 .yearLevel(yearLevel)
+                                 .program(program)
+                                 .contact(contact)
+                                 .build();
+        return studentDAO.save(student)
+                         .orElseThrow(() -> new EntityPersistenceException("Failed to enroll student."));
+    }
 
     @Override
     public Student updateStudentInfo(String name, String yearLevel, String program, String contact) {
