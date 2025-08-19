@@ -37,8 +37,9 @@ public class DatabaseConnection {
         StudentDAO studentDAO = new StudentImplDAO();
 
         documentDAO.createTable();
-        requiredDocumentDAO.createTable();
         studentDAO.createTable();
+        requiredDocumentDAO.createTable();
+
     }
 
 }
