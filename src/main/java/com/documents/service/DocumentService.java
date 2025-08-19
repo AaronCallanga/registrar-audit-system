@@ -16,5 +16,4 @@ public interface DocumentService {
     List<Document> getCompletedRequests();
 
     void releaseDocument(Long id);
-    void setUpTable();
 }

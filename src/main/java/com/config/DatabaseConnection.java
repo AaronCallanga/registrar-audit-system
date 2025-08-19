@@ -1,5 +1,13 @@
 package com.config;
 
+import com.documents.dao.DocumentDAO;
+import com.documents.dao.DocumentImplDAO;
+import com.student.dao.RequiredDocumentDAO;
+import com.student.dao.RequiredDocumentImplDAO;
+import com.student.dao.StudentDAO;
+import com.student.dao.StudentImplDAO;
+import com.student.model.RequiredDocument;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.logging.Logger;
@@ -21,6 +29,16 @@ public class DatabaseConnection {
         }
 
         return connection;
+    }
+
+    public static void setUpTables() {
+        DocumentDAO documentDAO = new DocumentImplDAO();
+        RequiredDocumentDAO requiredDocumentDAO = new RequiredDocumentImplDAO();
+        StudentDAO studentDAO = new StudentImplDAO();
+
+        documentDAO.createTable();
+        requiredDocumentDAO.createTable();
+        studentDAO.createTable();
     }
 
 }

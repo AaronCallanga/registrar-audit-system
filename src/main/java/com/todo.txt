@@ -15,3 +15,4 @@
 9. If a student year level updated, it should delete all the required documents and change it to a specific year level
        ex: 1st year -> TOR, BC      changed to 2nd Year -> TOR, BC, GOOD MORAL, F138
        delete this ^                                then save this instead ^        -> linked to user
+10. implement setUpTables in databaseConnection, create objects of each service dao/service and call the create table

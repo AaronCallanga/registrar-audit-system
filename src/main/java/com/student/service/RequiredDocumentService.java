@@ -13,5 +13,4 @@ public interface RequiredDocumentService {
     List<RequiredDocument> getRequiredDocumentsByStudentId(Long studentId);
     List<RequiredDocument> getRequiredDocumentsByStudentIdAndStatus(Long studentId, String status); // can be fetch by status (missing/submitted)) or by date (if submiited date is null)
     void submitRequiredDocument(Long requiredDocumentId);
-
 }

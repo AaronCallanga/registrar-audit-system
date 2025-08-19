@@ -1,5 +1,6 @@
 package com;
 
+import com.config.DatabaseConnection;
 import com.documents.dao.DocumentImplDAO;
 import com.documents.model.Document;
 import com.documents.service.DocumentService;
@@ -13,7 +14,7 @@ public class Main {
     private static final DocumentService documentService = new DocumentServiceImpl(new DocumentImplDAO());
 
     public static void main(String[] args) {
-        documentService.setUpTable();       // create a class for all the set up
+        DatabaseConnection.setUpTables();
         boolean running = true;
         while (running) {
             printMenu();
