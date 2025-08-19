@@ -54,9 +54,9 @@ public class StudentImplDAO implements StudentDAO {
         String sql = """
                 UPDATE students
                 SET name = ?, 
-                year_level = ?, 
-                program = ?, 
-                contact = ?
+                    year_level = ?, 
+                    program = ?, 
+                    contact = ?
                 WHERE id = ?
                 RETURNING *
                 """;
@@ -84,7 +84,16 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public void deleteById(Long id) {
+        String sql = "DELETE FROM students WHERE id = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
 
+            ps.setLong(1, id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error while deleting student: " + e.getMessage());
+        }
     }
 
     @Override
