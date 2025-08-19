@@ -51,6 +51,34 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public Optional<Student> updateById(Long id, Student obj) {
+        String sql = """
+                UPDATE students
+                SET name = ?, 
+                year_level = ?, 
+                program = ?, 
+                contact = ?
+                WHERE id = ?
+                RETURNING *
+                """;
+
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, obj.getName());
+            ps.setString(2, obj.getYearLevel());
+            ps.setString(3, obj.getProgram());
+            ps.setString(4, obj.getContact());
+            ps.setLong(5, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(StudentMapper.mapResultSetToRequiredDocument(rs));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error while updating student: " + e.getMessage());
+        }
+
         return Optional.empty();
     }
 
