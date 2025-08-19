@@ -22,6 +22,11 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Student with id " + id + " not found"));
     }
 
+    @Override
+    public void deleteStudentById(Long id) {
+        studentDAO.deleteById(id);
+    }
+
 
 
     @Override
