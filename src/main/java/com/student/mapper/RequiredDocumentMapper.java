@@ -23,5 +23,11 @@ public class RequiredDocumentMapper {
         return requiredDocument;
     }
 
-
+    public static List<RequiredDocument> mapResultSetToRequiredDocumentList(ResultSet rs) throws Exception {
+        List<RequiredDocument> requiredDocuments = new ArrayList<>();
+        while (rs.next()) {
+            requiredDocuments.add(mapResultSetToRequiredDocument(rs));
+        }
+        return requiredDocuments;
+    }
 }
