@@ -7,6 +7,7 @@ import com.student.model.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -126,6 +127,17 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public List<Student> findAll() {
+        String sql = "SELECT * FROM students";
+        List<Student> students = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+            return StudentMapper.mapResultSetToRequiredDocumentList(rs);
+        } catch (Exception e) {
+            System.out.println("Error while finding students: " + e.getMessage());
+        }
+
         return List.of();
     }
 }
