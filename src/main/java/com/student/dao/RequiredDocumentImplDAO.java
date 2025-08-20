@@ -148,4 +148,31 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
         }
         return List.of();
     }
+
+    @Override
+    public List<RequiredDocument> findRequiredDocumentsByStudentId(Long studentId) {
+        String sql = "SELECT * FROM required_documents WHERE student_id = ?";
+
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, studentId);
+            try (ResultSet rs = ps.executeQuery()) {
+                return RequiredDocumentMapper.mapResultSetToRequiredDocumentList(rs);
+            }
+        } catch (Exception e) {
+            System.out.println("Error while finding required documents: " + e.getMessage());
+        }
+
+        return List.of();
+    }
+
+    @Override
+    public List<RequiredDocument> findRequiredDocumentsByStudentIdAndStatus(Long studentId, String status) {
+        return List.of();
+    }
+
+    @Override
+    public void submitRequiredDocument(String documentType) {
+
+    }
 }
