@@ -64,6 +64,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudentsByProgram(String program) {
-        return List.of();
+        return studentDAO.findAllByProgram(program);
     }
 }
