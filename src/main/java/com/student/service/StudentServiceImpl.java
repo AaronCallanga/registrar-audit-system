@@ -59,7 +59,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudentsByYearLevel(String yearLevel) {
-        return List.of();
+        return studentDAO.findAllByYearLevel(yearLevel);
     }
 
     @Override
