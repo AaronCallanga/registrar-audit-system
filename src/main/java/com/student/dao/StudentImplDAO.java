@@ -40,7 +40,7 @@ public class StudentImplDAO implements StudentDAO {
             PreparedStatement ps = connection.prepareStatement(sql)) {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(StudentMapper.mapResultSetToRequiredDocument(rs));
+                    return Optional.of(StudentMapper.mapResultSetToStudent(rs));
                 }
             }
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class StudentImplDAO implements StudentDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(StudentMapper.mapResultSetToRequiredDocument(rs));
+                    return Optional.of(StudentMapper.mapResultSetToStudent(rs));
                 }
             }
 
@@ -115,7 +115,7 @@ public class StudentImplDAO implements StudentDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(StudentMapper.mapResultSetToRequiredDocument(rs));
+                    return Optional.of(StudentMapper.mapResultSetToStudent(rs));
                 }
             }
 
@@ -133,11 +133,35 @@ public class StudentImplDAO implements StudentDAO {
         try (Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery()) {
-            return StudentMapper.mapResultSetToRequiredDocumentList(rs);
+            return StudentMapper.mapResultSetToStudentList(rs);
         } catch (Exception e) {
             System.out.println("Error while finding students: " + e.getMessage());
         }
 
+        return List.of();
+    }
+
+    @Override
+    public List<Student> findAllByYearLevel(String yearLevel) {
+        String sql = "SELECT * FROM students WHERE year_level = ?";
+
+        List<Student> students = new ArrayList<>();
+
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, yearLevel);
+            try (ResultSet rs = ps.executeQuery()) {
+                return StudentMapper.mapResultSetToStudentList(rs);
+            }
+        } catch (Exception e) {
+            System.out.println("Error while finding students: " + e.getMessage());
+        }
+
+        return List.of();
+    }
+
+    @Override
+    public List<Student> findAllByProgram(String program) {
         return List.of();
     }
 }
