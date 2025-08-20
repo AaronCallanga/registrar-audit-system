@@ -20,7 +20,7 @@ public class RequiredDocumentServiceImpl implements RequiredDocumentService {
 
     @Override
     public List<RequiredDocument> getRequiredDocumentsByStudentIdAndStatus(Long studentId, String status) {
-        return List.of();
+        return requiredDocumentDAO.findRequiredDocumentsByStudentIdAndStatus(studentId, status);
     }
 
     @Override
