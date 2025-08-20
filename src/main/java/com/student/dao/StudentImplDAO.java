@@ -38,6 +38,7 @@ public class StudentImplDAO implements StudentDAO {
 
         try (Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return Optional.of(StudentMapper.mapResultSetToStudent(rs));
