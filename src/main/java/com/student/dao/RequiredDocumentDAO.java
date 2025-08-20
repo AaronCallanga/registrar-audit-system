@@ -11,7 +11,7 @@ public interface RequiredDocumentDAO extends BaseDAO<RequiredDocument> {
     //getRequiredDocumentsByStudentIdAndStatus - SUBMITTED / PENDING
     List<RequiredDocument> findRequiredDocumentsByStudentIdAndStatus(Long studentId, String status);
     //submitRequiredDocument    // change the status to SUBMITTED
-    void submitRequiredDocument(String documentType);
+    void submitRequiredDocument(Long studentId, String documentType);
 
 
 }

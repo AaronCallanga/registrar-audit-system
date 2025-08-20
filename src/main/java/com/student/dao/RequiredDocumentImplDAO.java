@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -183,12 +184,15 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
     }
 
     @Override
-    public void submitRequiredDocument(String documentType) {
-        String sql = "UPDATE required_documents SET status = ? WHERE document_type = ?";
-        try(Connection connection = DatabaseConnection.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql)) {
+    public void submitRequiredDocument(Long studentId, String documentType) {
+        String sql = "UPDATE required_documents SET status = ?, submitted_date = ? WHERE student_id = ? AND document_type = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, "SUBMITTED");
-            ps.setString(2, documentType);
+            ps.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setLong(3, studentId);
+            ps.setString(4, documentType);
+            ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error while submitting required document: " + e.getMessage());
         }
