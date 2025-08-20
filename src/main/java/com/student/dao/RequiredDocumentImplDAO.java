@@ -184,6 +184,13 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
 
     @Override
     public void submitRequiredDocument(String documentType) {
-
+        String sql = "UPDATE required_documents SET status = ? WHERE document_type = ?";
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "SUBMITTED");
+            ps.setString(2, documentType);
+        } catch (Exception e) {
+            System.out.println("Error while submitting required document: " + e.getMessage());
+        }
     }
 }
