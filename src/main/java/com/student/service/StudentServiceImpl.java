@@ -30,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student enrollStudent(String name, String yearLevel, String program, String contact) {
         Student student = Student.builder()
-                                 .studentNumber(UUID.randomUUID().toString())
+                                 .studentNumber("STU-" + UUID.randomUUID().toString().replace("-", "").substring(0, 10))
                                  .name(name)
                                  .yearLevel(yearLevel)
                                  .program(program)
@@ -42,13 +42,15 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student updateStudentInfo(Long studentId, String name, String yearLevel, String program, String contact) {
-        Student student = Student.builder()
-                                 .name(name)
-                                 .yearLevel(yearLevel)
-                                 .program(program)
-                                 .contact(contact)
-                                 .build();
-        return studentDAO.updateById(studentId, student)
+        Student existingStudent = studentDAO.findById(studentId)
+                                            .orElseThrow(() -> new ResourceNotFoundException("Student with id " + studentId + " not found"));
+
+        existingStudent.setName(name);
+        existingStudent.setYearLevel(yearLevel);
+        existingStudent.setProgram(program);
+        existingStudent.setContact(contact);
+
+        return studentDAO.updateById(studentId, existingStudent)
                 .orElseThrow(() -> new EntityPersistenceException("Failed to update student."));
     }
 
