@@ -6,7 +6,7 @@ import com.util.ScannerInputUtil;
 
 import java.util.List;
 
-public class DocumentFacadeImpl {
+public class DocumentFacadeImpl implements DocumentFacade {
 
     private final DocumentService documentService;
 
@@ -14,6 +14,7 @@ public class DocumentFacadeImpl {
         this.documentService = documentService;
     }
 
+    @Override
     public void createRequest() {
         System.out.println("\n--- Create New Request ---");
         String type = ScannerInputUtil.getStringInput("Enter document type: ");
@@ -28,6 +29,7 @@ public class DocumentFacadeImpl {
         }
     }
 
+    @Override
     public void viewRequestById() {
         Long id = ScannerInputUtil.getLongInput("Enter request ID: ");
         try {
@@ -38,6 +40,7 @@ public class DocumentFacadeImpl {
         }
     }
 
+    @Override
     public void updateRequest() {
         System.out.println("\n--- Update Request ---");
         Long id = ScannerInputUtil.getLongInput("Enter request ID: ");
@@ -53,6 +56,7 @@ public class DocumentFacadeImpl {
         }
     }
 
+    @Override
     public void deleteRequest() {
         Long id = ScannerInputUtil.getLongInput("Enter request ID: ");
         try {
@@ -63,24 +67,28 @@ public class DocumentFacadeImpl {
         }
     }
 
+    @Override
     public void viewAllRequests() {
         System.out.println("\n--- All Requests ---");
         List<Document> docs = documentService.getAllRequest();
         docs.forEach(System.out::println);
     }
 
+    @Override
     public void viewOngoingRequests() {
         System.out.println("\n--- Ongoing Requests ---");
         List<Document> docs = documentService.getOngoingRequests();
         docs.forEach(System.out::println);
     }
 
+    @Override
     public void viewCompletedRequests() {
         System.out.println("\n--- Completed Requests ---");
         List<Document> docs = documentService.getCompletedRequests();
         docs.forEach(System.out::println);
     }
 
+    @Override
     public void releaseDocument() {
         Long id = ScannerInputUtil.getLongInput("Enter request ID to release: ");
         try {
