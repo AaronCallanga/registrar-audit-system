@@ -145,8 +145,6 @@ public class StudentImplDAO implements StudentDAO {
     public List<Student> findAllByYearLevel(String yearLevel) {
         String sql = "SELECT * FROM students WHERE year_level = ?";
 
-        List<Student> students = new ArrayList<>();
-
         try(Connection connection = DatabaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, yearLevel);
@@ -154,7 +152,7 @@ public class StudentImplDAO implements StudentDAO {
                 return StudentMapper.mapResultSetToStudentList(rs);
             }
         } catch (Exception e) {
-            System.out.println("Error while finding students: " + e.getMessage());
+            System.out.println("Error while finding students by year level: " + e.getMessage());
         }
 
         return List.of();
@@ -162,6 +160,18 @@ public class StudentImplDAO implements StudentDAO {
 
     @Override
     public List<Student> findAllByProgram(String program) {
+        String sql = "SELECT * FROM students WHERE program = ?";
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, program);
+            try (ResultSet rs = ps.executeQuery()) {
+                return StudentMapper.mapResultSetToStudentList(rs);
+            }
+
+        }catch (Exception e) {
+            System.out.println("Error while finding students by program: " + e.getMessage());
+        }
+
         return List.of();
     }
 }
