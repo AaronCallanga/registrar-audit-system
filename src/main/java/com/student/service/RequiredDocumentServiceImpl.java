@@ -24,7 +24,7 @@ public class RequiredDocumentServiceImpl implements RequiredDocumentService {
     }
 
     @Override
-    public void submitRequiredDocument(Long studentId, Long requiredDocumentId) {
-
+    public void submitRequiredDocument(Long studentId, String documentType) {
+        requiredDocumentDAO.submitRequiredDocument(studentId, documentType);
     }
 }
