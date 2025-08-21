@@ -26,7 +26,13 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public void removeStudentById() {
-
+        Long id = UserInputUtil.getLongInput("Enter student ID to delete: ");
+        try {
+            studentService.deleteStudentById(id);
+            System.out.println("Student deleted successfully.");
+        } catch (Exception e) {
+            System.out.println("Error deleting student: " + e.getMessage());
+        }
     }
 
     @Override
