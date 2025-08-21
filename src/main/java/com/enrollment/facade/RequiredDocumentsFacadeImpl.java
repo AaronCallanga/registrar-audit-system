@@ -32,7 +32,19 @@ public class RequiredDocumentsFacadeImpl implements RequiredDocumentsFacade {
 
     @Override
     public void viewSubmittedRequiredDocumentsByStudentId() {
-
+        Long studentId = UserInputUtil.getLongInput("Enter student ID: ");
+        try {
+            List<RequiredDocument> submittedDocs =
+                    requiredDocumentService.getRequiredDocumentsByStudentIdAndStatus(studentId, "SUBMITTED");
+            System.out.println("\n--- Submitted Documents ---");
+            if (submittedDocs.isEmpty()) {
+                System.out.println("No submitted documents yet.");
+            } else {
+                submittedDocs.forEach(System.out::println);
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching submitted documents: " + e.getMessage());
+        }
     }
 
     @Override
