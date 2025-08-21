@@ -49,7 +49,19 @@ public class RequiredDocumentsFacadeImpl implements RequiredDocumentsFacade {
 
     @Override
     public void viewMissingRequiredDocumentsByStudentId() {
-
+        Long studentId = UserInputUtil.getLongInput("Enter student ID: ");
+        try {
+            List<RequiredDocument> missingDocs =
+                    requiredDocumentService.getRequiredDocumentsByStudentIdAndStatus(studentId, "MISSING");
+            System.out.println("\n--- Missing Documents ---");
+            if (missingDocs.isEmpty()) {
+                System.out.println("No missing documents. All documents submitted.");
+            } else {
+                missingDocs.forEach(System.out::println);
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching missing documents: " + e.getMessage());
+        }
     }
 
     @Override

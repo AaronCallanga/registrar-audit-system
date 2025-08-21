@@ -20,7 +20,7 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
                 "    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n" +
                 "    student_id INT NOT NULL,\n" +
                 "    document_type VARCHAR(255) NOT NULL,\n" +
-                "    status VARCHAR(255) NOT NULL,\n" +
+                "    status VARCHAR(255) NOT NULL DEFAULT 'MISSING',\n" +
                 "    submitted_date TIMESTAMP,\n" +
                 "    CONSTRAINT fk_student FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE\n" +
                 ");";
