@@ -4,6 +4,8 @@ import com.enrollment.model.Student;
 import com.enrollment.service.StudentService;
 import com.util.UserInputUtil;
 
+import java.util.List;
+
 public class StudentFacadeImpl implements StudentFacade {
 
     private final StudentService studentService;
@@ -70,7 +72,9 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public void viewAllStudents() {
-
+        System.out.println("\n--- List of Students ---");
+        List<Student> students = studentService.getAllStudents();
+        students.forEach(System.out::println);
     }
 
     @Override
