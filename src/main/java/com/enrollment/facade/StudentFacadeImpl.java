@@ -79,7 +79,10 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public void viewAllStudentsByYearLevel() {
-
+        String yearLevel = UserInputUtil.getStringInput("Enter year level: ");
+        System.out.println("\n--- Students in Year Level: " + yearLevel + " ---");
+        List<Student> students = studentService.getAllStudentsByYearLevel(yearLevel);
+        students.forEach(System.out::println);
     }
 
     @Override
