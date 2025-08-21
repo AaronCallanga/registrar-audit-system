@@ -66,6 +66,14 @@ public class RequiredDocumentsFacadeImpl implements RequiredDocumentsFacade {
 
     @Override
     public void submitRequiredDocument() {
+        Long studentId = UserInputUtil.getLongInput("Enter student ID: ");
+        String documentType = UserInputUtil.getStringInput("Enter document type to submit: ");
 
+        try {
+            requiredDocumentService.submitRequiredDocument(studentId, documentType);
+            System.out.println("Document '" + documentType + "' submitted successfully for student ID: " + studentId);
+        } catch (Exception e) {
+            System.out.println("Error submitting document: " + e.getMessage());
+        }
     }
 }
