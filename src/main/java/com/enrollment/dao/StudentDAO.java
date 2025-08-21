@@ -1,7 +1,7 @@
-package com.student.dao;
+package com.enrollment.dao;
 
 import com.base.BaseDAO;
-import com.student.model.Student;
+import com.enrollment.model.Student;
 
 import java.util.List;
 

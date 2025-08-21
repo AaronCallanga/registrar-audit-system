@@ -2,15 +2,13 @@ package com.config;
 
 import com.documents.dao.DocumentDAO;
 import com.documents.dao.DocumentImplDAO;
-import com.student.dao.RequiredDocumentDAO;
-import com.student.dao.RequiredDocumentImplDAO;
-import com.student.dao.StudentDAO;
-import com.student.dao.StudentImplDAO;
-import com.student.model.RequiredDocument;
+import com.enrollment.dao.RequiredDocumentDAO;
+import com.enrollment.dao.RequiredDocumentImplDAO;
+import com.enrollment.dao.StudentDAO;
+import com.enrollment.dao.StudentImplDAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.logging.Logger;
 
 public class DatabaseConnection {
 

@@ -1,9 +1,9 @@
-package com.student.service;
+package com.enrollment.service;
 
 import com.exceptions.EntityPersistenceException;
 import com.exceptions.ResourceNotFoundException;
-import com.student.dao.StudentDAO;
-import com.student.model.Student;
+import com.enrollment.dao.StudentDAO;
+import com.enrollment.model.Student;
 
 import java.util.List;
 import java.util.UUID;

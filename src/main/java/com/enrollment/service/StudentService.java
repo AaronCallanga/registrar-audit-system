@@ -1,6 +1,6 @@
-package com.student.service;
+package com.enrollment.service;
 
-import com.student.model.Student;
+import com.enrollment.model.Student;
 
 import java.util.List;
 

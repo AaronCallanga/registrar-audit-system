@@ -1,16 +1,12 @@
-package com.student.dao;
+package com.enrollment.dao;
 
 import com.config.DatabaseConnection;
-import com.documents.mapper.DocumentMapper;
-import com.student.mapper.RequiredDocumentMapper;
-import com.student.model.RequiredDocument;
+import com.enrollment.mapper.RequiredDocumentMapper;
+import com.enrollment.model.RequiredDocument;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;

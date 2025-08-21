@@ -1,8 +1,8 @@
-package com.student.dao;
+package com.enrollment.dao;
 
 import com.config.DatabaseConnection;
-import com.student.mapper.StudentMapper;
-import com.student.model.Student;
+import com.enrollment.mapper.StudentMapper;
+import com.enrollment.model.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

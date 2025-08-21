@@ -2,7 +2,7 @@ package com.documents.facade;
 
 import com.documents.model.Document;
 import com.documents.service.DocumentService;
-import com.util.ScannerInputUtil;
+import com.util.UserInputUtil;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ public class DocumentFacadeImpl implements DocumentFacade {
     @Override
     public void createRequest() {
         System.out.println("\n--- Create New Request ---");
-        String type = ScannerInputUtil.getStringInput("Enter document type: ");
-        String requestedBy = ScannerInputUtil.getStringInput("Enter requested by: ");
-        String contact = ScannerInputUtil.getStringInput("Enter contact: ");
+        String type = UserInputUtil.getStringInput("Enter document type: ");
+        String requestedBy = UserInputUtil.getStringInput("Enter requested by: ");
+        String contact = UserInputUtil.getStringInput("Enter contact: ");
 
         try {
             Document doc = documentService.createRequest(type, requestedBy, contact);
@@ -31,7 +31,7 @@ public class DocumentFacadeImpl implements DocumentFacade {
 
     @Override
     public void viewRequestById() {
-        Long id = ScannerInputUtil.getLongInput("Enter request ID: ");
+        Long id = UserInputUtil.getLongInput("Enter request ID: ");
         try {
             Document doc = documentService.getRequestById(id);
             System.out.println("Found: " + doc);
@@ -43,10 +43,10 @@ public class DocumentFacadeImpl implements DocumentFacade {
     @Override
     public void updateRequest() {
         System.out.println("\n--- Update Request ---");
-        Long id = ScannerInputUtil.getLongInput("Enter request ID: ");
-        String type = ScannerInputUtil.getStringInput("Enter new document type: ");
-        String requestedBy = ScannerInputUtil.getStringInput("Enter new requested by: ");
-        String contact = ScannerInputUtil.getStringInput("Enter new contact: ");
+        Long id = UserInputUtil.getLongInput("Enter request ID: ");
+        String type = UserInputUtil.getStringInput("Enter new document type: ");
+        String requestedBy = UserInputUtil.getStringInput("Enter new requested by: ");
+        String contact = UserInputUtil.getStringInput("Enter new contact: ");
 
         try {
             Document doc = documentService.updateRequest(id, type, requestedBy, contact);
@@ -58,7 +58,7 @@ public class DocumentFacadeImpl implements DocumentFacade {
 
     @Override
     public void deleteRequest() {
-        Long id = ScannerInputUtil.getLongInput("Enter request ID: ");
+        Long id = UserInputUtil.getLongInput("Enter request ID: ");
         try {
             documentService.deleteRequestById(id);
             System.out.println("Request deleted successfully.");
@@ -90,7 +90,7 @@ public class DocumentFacadeImpl implements DocumentFacade {
 
     @Override
     public void releaseDocument() {
-        Long id = ScannerInputUtil.getLongInput("Enter request ID to release: ");
+        Long id = UserInputUtil.getLongInput("Enter request ID to release: ");
         try {
             documentService.releaseDocument(id);
             System.out.println("Document released successfully.");

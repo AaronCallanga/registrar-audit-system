@@ -17,3 +17,4 @@
        delete this ^                                then save this instead ^        -> linked to user
 10. implement setUpTables in databaseConnection, create objects of each service dao/service and call the create table
 11. enroll student, get the id of the student, use it to save required documents
+12. Create a enrollment + student facade. for menu

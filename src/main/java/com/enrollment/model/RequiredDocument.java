@@ -1,4 +1,4 @@
-package com.student.model;
+package com.enrollment.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

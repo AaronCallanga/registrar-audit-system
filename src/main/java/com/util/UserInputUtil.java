@@ -2,7 +2,7 @@ package com.util;
 
 import java.util.Scanner;
 
-public class ScannerInputUtil {
+public class UserInputUtil {
 
     private static Scanner scanner = new Scanner(System.in);
 

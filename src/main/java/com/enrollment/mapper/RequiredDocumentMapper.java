@@ -1,9 +1,8 @@
-package com.student.mapper;
+package com.enrollment.mapper;
 
-import com.student.model.RequiredDocument;
+import com.enrollment.model.RequiredDocument;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
