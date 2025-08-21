@@ -64,13 +64,13 @@ public class StudentFacadeImpl implements StudentFacade {
             System.out.println("Enrolled successfully: " + student);
 
             // Immediately show required documents for the new student -> use batch save then return the result
-//            List<RequiredDocument> documents = requiredDocumentService.getRequiredDocumentsByStudentId(student.getId());
-//            if (documents.isEmpty()) {
-//                System.out.println("No required documents yet. You may submit them later.");
-//            } else {
-//                System.out.println("\n--- Required Documents ---");
-//                documents.forEach(System.out::println);
-//            }
+            List<RequiredDocument> documents = requiredDocumentService.getRequiredDocumentsByStudentId(student.getId());
+            if (documents.isEmpty()) {
+                System.out.println("No required documents yet. You may submit them later.");
+            } else {
+                System.out.println("\n--- Required Documents ---");
+                documents.forEach(System.out::println);
+            }
         } catch (Exception e) {
             System.out.println("Error enrolling student: " + e.getMessage());
         }

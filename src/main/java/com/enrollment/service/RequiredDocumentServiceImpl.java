@@ -2,6 +2,8 @@ package com.enrollment.service;
 
 import com.enrollment.dao.RequiredDocumentDAO;
 import com.enrollment.model.RequiredDocument;
+import com.exceptions.EntityPersistenceException;
+import com.exceptions.ResourceNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class RequiredDocumentServiceImpl implements RequiredDocumentService {
         List<RequiredDocument> requiredDocuments = new ArrayList<>();
         requiredDocuments.add(
                 requiredDocumentDAO.save(requiredDocument)
-                    .orElseThrow(() -> new RuntimeException("Required document not created"))
+                    .orElseThrow(() -> new EntityPersistenceException("Required document not created"))
                              );
         return requiredDocuments;
     }
