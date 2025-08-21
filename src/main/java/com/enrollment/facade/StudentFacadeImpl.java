@@ -1,11 +1,13 @@
 package com.enrollment.facade;
 
+import com.enrollment.RequiredDocumentsByYearLevel;
 import com.enrollment.model.RequiredDocument;
 import com.enrollment.model.Student;
 import com.enrollment.service.RequiredDocumentService;
 import com.enrollment.service.StudentService;
 import com.util.UserInputUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentFacadeImpl implements StudentFacade {
@@ -55,7 +57,7 @@ public class StudentFacadeImpl implements StudentFacade {
     public void enrollStudent() {
         System.out.println("\n--- Enroll New Student ---");
         String name = UserInputUtil.getStringInput("Enter name: ");
-        String yearLevel = UserInputUtil.getStringInput("Enter year level: ");
+        String yearLevel = UserInputUtil.getStringInput("Enter year level (1, 2, 3, 4, 5): ");
         String program = UserInputUtil.getStringInput("Enter program: ");
         String contact = UserInputUtil.getStringInput("Enter contact: ");
 
@@ -63,13 +65,24 @@ public class StudentFacadeImpl implements StudentFacade {
             Student student = studentService.enrollStudent(name, yearLevel, program, contact);
             System.out.println("Enrolled successfully: " + student);
 
-            // Immediately show required documents for the new student -> use batch save then return the result
-            List<RequiredDocument> documents = requiredDocumentService.getRequiredDocumentsByStudentId(student.getId());
-            if (documents.isEmpty()) {
+            RequiredDocumentsByYearLevel documentsByYearLevel = RequiredDocumentsByYearLevel.fromInput(yearLevel);
+
+            List<RequiredDocument> requiredDocuments = new ArrayList<>();
+            for (String doc : documentsByYearLevel.getRequiredDocuments()) {
+                RequiredDocument rd = RequiredDocument.builder()
+                        .studentId(student.getId())
+                        .documentType(doc)
+                        .status("MISSING")
+                        .build();
+                requiredDocuments.add(requiredDocumentService.createRequiredDocuments(rd));
+            }
+
+            // Print the generated docs
+            if (requiredDocuments.isEmpty()) {
                 System.out.println("No required documents yet. You may submit them later.");
             } else {
                 System.out.println("\n--- Required Documents ---");
-                documents.forEach(System.out::println);
+                requiredDocuments.forEach(System.out::println);
             }
         } catch (Exception e) {
             System.out.println("Error enrolling student: " + e.getMessage());

@@ -32,12 +32,8 @@ public class RequiredDocumentServiceImpl implements RequiredDocumentService {
     }
 
     @Override
-    public List<RequiredDocument> createRequiredDocuments(RequiredDocument requiredDocument) {
-        List<RequiredDocument> requiredDocuments = new ArrayList<>();
-        requiredDocuments.add(
-                requiredDocumentDAO.save(requiredDocument)
-                    .orElseThrow(() -> new EntityPersistenceException("Required document not created"))
-                             );
-        return requiredDocuments;
+    public RequiredDocument createRequiredDocuments(RequiredDocument requiredDocument) {
+        return requiredDocumentDAO.save(requiredDocument)
+                    .orElseThrow(() -> new EntityPersistenceException("Required document not created"));
     }
 }

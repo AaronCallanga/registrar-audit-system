@@ -19,13 +19,25 @@ public enum RequiredDocumentsByYearLevel {
     }
 
     // Optional: map numeric year level (1,2,3,4) to enum
-    public static RequiredDocumentsByYearLevel fromYearLevel(int yearLevel) {
-        return switch (yearLevel) {
-            case 1 -> FIRST_YEAR;
-            case 2 -> SECOND_YEAR;
-            case 3 -> THIRD_YEAR;
-            case 4 -> FOURTH_YEAR;
-            default -> throw new IllegalArgumentException("Invalid year level: " + yearLevel);
-        };
+    // 👇 Normalization logic
+    public static RequiredDocumentsByYearLevel fromInput(String input) {
+        String normalized = input.trim().toUpperCase().replaceAll("[^A-Z0-9]", "");
+
+        switch (normalized) {
+            case "1":
+            case "FIRSTYEAR":
+                return FIRST_YEAR;
+            case "2":
+            case "SECONDYEAR":
+                return SECOND_YEAR;
+            case "3":
+            case "THIRDYEAR":
+                return THIRD_YEAR;
+            case "4":
+            case "FOURTHYEAR":
+                return FOURTH_YEAR;
+            default:
+                throw new IllegalArgumentException("Invalid year level: " + input);
+        }
     }
 }
