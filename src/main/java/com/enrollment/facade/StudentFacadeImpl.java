@@ -1,6 +1,8 @@
 package com.enrollment.facade;
 
+import com.enrollment.model.RequiredDocument;
 import com.enrollment.model.Student;
+import com.enrollment.service.RequiredDocumentService;
 import com.enrollment.service.StudentService;
 import com.util.UserInputUtil;
 
@@ -9,9 +11,11 @@ import java.util.List;
 public class StudentFacadeImpl implements StudentFacade {
 
     private final StudentService studentService;
+    private final RequiredDocumentService requiredDocumentService;
 
-    public StudentFacadeImpl(StudentService studentService) {
+    public StudentFacadeImpl(StudentService studentService, RequiredDocumentService requiredDocumentService) {
         this.studentService = studentService;
+        this.requiredDocumentService = requiredDocumentService;
     }
 
     @Override
@@ -19,7 +23,17 @@ public class StudentFacadeImpl implements StudentFacade {
         Long id = UserInputUtil.getLongInput("Enter student ID: ");
         try {
             Student student = studentService.getStudentById(id);
-            System.out.println("Found: " + student);
+            System.out.println("\n--- Student Info ---");
+            System.out.println(student);
+
+            // Fetch required documents for this student
+            List<RequiredDocument> documents = requiredDocumentService.getRequiredDocumentsByStudentId(id);
+            if (documents.isEmpty()) {
+                System.out.println("No required documents found for this student.");
+            } else {
+                System.out.println("\n--- Required Documents ---");
+                documents.forEach(System.out::println);
+            }
         } catch (Exception e) {
             System.out.println("Error fetching student: " + e.getMessage());
         }
