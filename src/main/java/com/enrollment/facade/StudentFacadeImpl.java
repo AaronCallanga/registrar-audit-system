@@ -87,6 +87,9 @@ public class StudentFacadeImpl implements StudentFacade {
 
     @Override
     public void viewAllStudentsByProgram() {
-
+        String program = UserInputUtil.getStringInput("Enter program: ");
+        System.out.println("\n--- Students in Program: " + program + " ---");
+        List<Student> students = studentService.getAllStudentsByProgram(program);
+        students.forEach(System.out::println);
     }
 }
