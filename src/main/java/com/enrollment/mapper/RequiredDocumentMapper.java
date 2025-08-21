@@ -10,7 +10,7 @@ import java.util.List;
 public class RequiredDocumentMapper {
     public static RequiredDocument mapResultSetToRequiredDocument(ResultSet rs) throws Exception {
 
-        Timestamp submittedDate = Timestamp.valueOf(rs.getString("submitted_date"));
+        Timestamp submittedDate = rs.getTimestamp("submitted_date");
 
         RequiredDocument requiredDocument = RequiredDocument.builder()
                 .id(rs.getLong("id"))

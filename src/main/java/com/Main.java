@@ -6,6 +6,16 @@ import com.documents.facade.DocumentFacade;
 import com.documents.service.DocumentService;
 import com.documents.service.DocumentServiceImpl;
 import com.documents.facade.DocumentFacadeImpl;
+import com.enrollment.dao.RequiredDocumentImplDAO;
+import com.enrollment.dao.StudentImplDAO;
+import com.enrollment.facade.RequiredDocumentsFacade;
+import com.enrollment.facade.RequiredDocumentsFacadeImpl;
+import com.enrollment.facade.StudentFacade;
+import com.enrollment.facade.StudentFacadeImpl;
+import com.enrollment.service.RequiredDocumentService;
+import com.enrollment.service.RequiredDocumentServiceImpl;
+import com.enrollment.service.StudentService;
+import com.enrollment.service.StudentServiceImpl;
 import com.util.DisplayUtil;
 import com.util.UserInputUtil;
 
@@ -35,9 +45,37 @@ public class Main {
     }
 
     private static void showEnrollmentDocumentMenu() {
+        StudentService studentService = new StudentServiceImpl(new StudentImplDAO());
+        RequiredDocumentService requiredDocumentService = new RequiredDocumentServiceImpl(new RequiredDocumentImplDAO());
+        StudentFacade studentFacade = new StudentFacadeImpl(studentService, requiredDocumentService);
+        RequiredDocumentsFacade requiredDocumentsFacade = new RequiredDocumentsFacadeImpl(requiredDocumentService);
+        boolean running = true;
 
         // FOR ENROLLMENT MENU
-        DisplayUtil.printMenuEnrollmentDocuments();
+        while (running) {
+            DisplayUtil.printMenuEnrollmentDocuments();
+            int choice = UserInputUtil.getIntInput("Enter your choice: ");
+            switch (choice) {
+                case 1 -> studentFacade.enrollStudent();
+                case 2 -> studentFacade.viewStudentById();
+                case 3 -> studentFacade.updateStudentInfo();
+                case 4 -> studentFacade.removeStudentById();
+                case 5 -> studentFacade.viewAllStudents();
+                case 6 -> studentFacade.viewAllStudentsByYearLevel();
+                case 7 -> studentFacade.viewAllStudentsByProgram();
+                case 8 -> requiredDocumentsFacade.viewRequiredDocumentsByStudentId();
+                case 9 -> requiredDocumentsFacade.viewSubmittedRequiredDocumentsByStudentId();
+                case 10 -> requiredDocumentsFacade.viewMissingRequiredDocumentsByStudentId();
+                case 11 -> requiredDocumentsFacade.submitRequiredDocument();
+                case 12 -> {return;}
+                case 13 -> {
+                    running = false;
+                    System.out.println("Exiting system. Goodbye!");
+                    System.exit(0);
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
+            }
+        }
 
     }
 

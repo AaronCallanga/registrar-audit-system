@@ -128,6 +128,7 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
 
         } catch (Exception e) {
             System.out.println("Error while saving required document: " + e.getMessage());
+            e.printStackTrace();
         }
 
         return Optional.empty();
@@ -158,6 +159,7 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
             }
         } catch (Exception e) {
             System.out.println("Error while finding required documents: " + e.getMessage());
+            e.printStackTrace();
         }
 
         return List.of();
