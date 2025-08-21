@@ -3,6 +3,7 @@ package com.enrollment.service;
 import com.enrollment.dao.RequiredDocumentDAO;
 import com.enrollment.model.RequiredDocument;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RequiredDocumentServiceImpl implements RequiredDocumentService {
@@ -26,5 +27,15 @@ public class RequiredDocumentServiceImpl implements RequiredDocumentService {
     @Override
     public void submitRequiredDocument(Long studentId, String documentType) {
         requiredDocumentDAO.submitRequiredDocument(studentId, documentType);
+    }
+
+    @Override
+    public List<RequiredDocument> createRequiredDocuments(RequiredDocument requiredDocument) {
+        List<RequiredDocument> requiredDocuments = new ArrayList<>();
+        requiredDocuments.add(
+                requiredDocumentDAO.save(requiredDocument)
+                    .orElseThrow(() -> new RuntimeException("Required document not created"))
+                             );
+        return requiredDocuments;
     }
 }
