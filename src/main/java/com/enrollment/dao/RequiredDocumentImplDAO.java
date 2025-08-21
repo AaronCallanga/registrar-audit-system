@@ -183,7 +183,7 @@ public class RequiredDocumentImplDAO implements RequiredDocumentDAO {
 
     @Override
     public void submitRequiredDocument(Long studentId, String documentType) {
-        String sql = "UPDATE required_documents SET status = ?, submitted_date = ? WHERE student_id = ? AND document_type = ?";
+        String sql = "UPDATE required_documents SET status = ?, submitted_date = ? WHERE student_id = ? AND LOWER(document_type) = LOWER(?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, "SUBMITTED");

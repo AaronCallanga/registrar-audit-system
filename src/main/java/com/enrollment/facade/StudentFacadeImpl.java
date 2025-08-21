@@ -57,7 +57,7 @@ public class StudentFacadeImpl implements StudentFacade {
     public void enrollStudent() {
         System.out.println("\n--- Enroll New Student ---");
         String name = UserInputUtil.getStringInput("Enter name: ");
-        String yearLevel = UserInputUtil.getStringInput("Enter year level (1, 2, 3, 4, 5): ");
+        String yearLevel = UserInputUtil.getStringInput("Enter year level (1, 2, 3, 4): ");
         RequiredDocumentsByYearLevel normalized = RequiredDocumentsByYearLevel.fromInput(yearLevel);
         String program = UserInputUtil.getStringInput("Enter program: ");
         String contact = UserInputUtil.getStringInput("Enter contact: ");
@@ -95,13 +95,11 @@ public class StudentFacadeImpl implements StudentFacade {
         System.out.println("\n--- Update Student Info ---");
         Long studentId = UserInputUtil.getLongInput("Enter student ID: ");
         String name = UserInputUtil.getStringInput("Enter name: ");
-        String yearLevel = UserInputUtil.getStringInput("Enter year level: ");
-        RequiredDocumentsByYearLevel normalized = RequiredDocumentsByYearLevel.fromInput(yearLevel);
         String program = UserInputUtil.getStringInput("Enter program: ");
         String contact = UserInputUtil.getStringInput("Enter contact: ");
 
         try {
-            Student updated = studentService.updateStudentInfo(studentId, name, normalized.name(), program, contact);
+            Student updated = studentService.updateStudentInfo(studentId, name, program, contact);
             System.out.println("Updated successfully: " + updated);
         } catch (Exception e) {
             System.out.println("Error updating student: " + e.getMessage());

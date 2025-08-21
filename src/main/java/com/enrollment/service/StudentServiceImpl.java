@@ -41,12 +41,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student updateStudentInfo(Long studentId, String name, String yearLevel, String program, String contact) {
+    public Student updateStudentInfo(Long studentId, String name, String program, String contact) {
         Student existingStudent = studentDAO.findById(studentId)
                                             .orElseThrow(() -> new ResourceNotFoundException("Student with id " + studentId + " not found"));
 
         existingStudent.setName(name);
-        existingStudent.setYearLevel(yearLevel);
         existingStudent.setProgram(program);
         existingStudent.setContact(contact);
 
