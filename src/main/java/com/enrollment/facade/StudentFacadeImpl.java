@@ -36,12 +36,23 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public void enrollStudent(String name, String yearLevel, String program, String contact) {
+    public void enrollStudent() {
+        System.out.println("\n--- Enroll New Student ---");
+        String name = UserInputUtil.getStringInput("Enter name: ");
+        String yearLevel = UserInputUtil.getStringInput("Enter year level: ");
+        String program = UserInputUtil.getStringInput("Enter program: ");
+        String contact = UserInputUtil.getStringInput("Enter contact: ");
 
+        try {
+            Student student = studentService.enrollStudent(name, yearLevel, program, contact);
+            System.out.println("Enrolled successfully: " + student);
+        } catch (Exception e) {
+            System.out.println("Error enrolling student: " + e.getMessage());
+        }
     }
 
     @Override
-    public void updateStudentInfo(Long studentId, String name, String yearLevel, String program, String contact) {
+    public void updateStudentInfo() {
 
     }
 
@@ -51,12 +62,12 @@ public class StudentFacadeImpl implements StudentFacade {
     }
 
     @Override
-    public void viewAllStudentsByYearLevel(String yearLevel) {
+    public void viewAllStudentsByYearLevel() {
 
     }
 
     @Override
-    public void viewAllStudentsByProgram(String program) {
+    public void viewAllStudentsByProgram() {
 
     }
 }
