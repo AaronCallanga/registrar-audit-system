@@ -20,6 +20,9 @@ Student <- Many to one with the Subjects (Based on year level and semester)
   When an admin adds a student to a year + semester, the required subjects (with units) are automatically persisted for that student.
 - When students finished a semester, delete the subjects linked and insert the new set of subject base on the year level and semester
 
-
+// Create pseudocode, present only kayang tapusin
+// Just explain the process of the system
+// TO PASS:
+// Compilation of codes + output
 
 
