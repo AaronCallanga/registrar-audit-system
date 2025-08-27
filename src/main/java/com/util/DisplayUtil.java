@@ -8,7 +8,7 @@ public class DisplayUtil {
         System.out.println("[3] Exit");
     }
     public static void printMenuDocumentRequest() {
-        System.out.println("\n=== Document Audit Management ===");
+        System.out.println("\n=== Document Request Audit ===");
         System.out.println("1. Create New Request");
         System.out.println("2. View Request by ID");
         System.out.println("3. Update Request");
@@ -22,7 +22,7 @@ public class DisplayUtil {
         System.out.println("================================");
     }
     public static void printMenuEnrollmentDocuments() {
-        System.out.println("\n=== Enrollment Management ===");
+        System.out.println("=== Enrollment Document Audit ===");
         System.out.println("1. Enroll New Student");
         System.out.println("2. View Student by ID");
         System.out.println("3. Update Student Information");

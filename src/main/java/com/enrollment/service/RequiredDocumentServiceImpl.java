@@ -28,7 +28,17 @@ public class RequiredDocumentServiceImpl implements RequiredDocumentService {
 
     @Override
     public void submitRequiredDocument(Long studentId, String documentType) {
-        requiredDocumentDAO.submitRequiredDocument(studentId, documentType);
+        List<RequiredDocument> requiredDocuments = getRequiredDocumentsByStudentId(studentId);
+        boolean isDocumentRequired = requiredDocuments.stream()
+                                                      .anyMatch(requiredDocument ->
+                                                                      requiredDocument.getDocumentType().equalsIgnoreCase(documentType)
+                                                               );
+        if (isDocumentRequired) {
+            requiredDocumentDAO.submitRequiredDocument(studentId, documentType);
+            System.out.println("Document '" + documentType + "' submitted successfully for student ID: " + studentId);
+        } else {
+            System.out.println("Document '" + documentType + "' is not required for student ID: " + studentId);
+        }
     }
 
     @Override

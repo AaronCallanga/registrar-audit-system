@@ -1,9 +1,8 @@
 package com.documents.dao;
 
 import com.config.DatabaseConnection;
-import com.documents.mapper.DocumentMapper;
+import com.documents.mapper.DocumentRequestMapper;
 import com.documents.model.Document;
-import com.exceptions.ResourceNotFoundException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
-public class DocumentImplDAO implements DocumentDAO {
+public class DocumentRequestImplDAO implements DocumentRequestDAO {
 
     @Override
     public void createTable() {
@@ -48,7 +47,7 @@ public class DocumentImplDAO implements DocumentDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(DocumentMapper.mapResultSetToDocument(rs));
+                    return Optional.of(DocumentRequestMapper.mapResultSetToDocument(rs));
                 }
             }
         } catch (Exception e) {
@@ -86,7 +85,7 @@ public class DocumentImplDAO implements DocumentDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(DocumentMapper.mapResultSetToDocument(rs));
+                    return Optional.of(DocumentRequestMapper.mapResultSetToDocument(rs));
                 }
             }
 
@@ -135,7 +134,7 @@ public class DocumentImplDAO implements DocumentDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(DocumentMapper.mapResultSetToDocument(rs));
+                    return Optional.of(DocumentRequestMapper.mapResultSetToDocument(rs));
                 }
             }
 
@@ -154,7 +153,7 @@ public class DocumentImplDAO implements DocumentDAO {
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
-            return DocumentMapper.mapResultSetToDocumentList(rs);
+            return DocumentRequestMapper.mapResultSetToDocumentList(rs);
 
         } catch (Exception e) {
             throw new RuntimeException("Error fetching all documents", e);
@@ -167,7 +166,7 @@ public class DocumentImplDAO implements DocumentDAO {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-            return DocumentMapper.mapResultSetToDocumentList(rs);
+            return DocumentRequestMapper.mapResultSetToDocumentList(rs);
         } catch (Exception e) {
             throw new RuntimeException("Error fetching ongoing requests", e);
         }
@@ -179,7 +178,7 @@ public class DocumentImplDAO implements DocumentDAO {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-            return DocumentMapper.mapResultSetToDocumentList(rs);
+            return DocumentRequestMapper.mapResultSetToDocumentList(rs);
         } catch (Exception e) {
             throw new RuntimeException("Error fetching completed requests", e);
         }

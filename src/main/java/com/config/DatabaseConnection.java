@@ -1,7 +1,7 @@
 package com.config;
 
-import com.documents.dao.DocumentDAO;
-import com.documents.dao.DocumentImplDAO;
+import com.documents.dao.DocumentRequestDAO;
+import com.documents.dao.DocumentRequestImplDAO;
 import com.enrollment.dao.RequiredDocumentDAO;
 import com.enrollment.dao.RequiredDocumentImplDAO;
 import com.enrollment.dao.StudentDAO;
@@ -30,7 +30,7 @@ public class DatabaseConnection {
     }
 
     public static void setUpTables() {
-        DocumentDAO documentDAO = new DocumentImplDAO();
+        DocumentRequestDAO documentDAO = new DocumentRequestImplDAO();
         RequiredDocumentDAO requiredDocumentDAO = new RequiredDocumentImplDAO();
         StudentDAO studentDAO = new StudentImplDAO();
 

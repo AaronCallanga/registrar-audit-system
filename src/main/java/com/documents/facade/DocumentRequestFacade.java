@@ -1,6 +1,6 @@
 package com.documents.facade;
 
-public interface DocumentFacade {
+public interface DocumentRequestFacade {
     void createRequest();
 
     void viewRequestById();

@@ -2,11 +2,9 @@ package com.documents.service;
 
 import com.documents.model.Document;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
-public interface DocumentService {
+public interface DocumentRequestService {
     Document getRequestById(Long id);
     void deleteRequestById(Long id);
     List<Document> getAllRequest();

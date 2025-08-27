@@ -1,11 +1,11 @@
 package com;
 
 import com.config.DatabaseConnection;
-import com.documents.dao.DocumentImplDAO;
-import com.documents.facade.DocumentFacade;
-import com.documents.service.DocumentService;
-import com.documents.service.DocumentServiceImpl;
-import com.documents.facade.DocumentFacadeImpl;
+import com.documents.dao.DocumentRequestImplDAO;
+import com.documents.facade.DocumentRequestFacade;
+import com.documents.service.DocumentRequestService;
+import com.documents.service.DocumentRequestServiceImpl;
+import com.documents.facade.DocumentRequestFacadeImpl;
 import com.enrollment.dao.RequiredDocumentImplDAO;
 import com.enrollment.dao.StudentImplDAO;
 import com.enrollment.facade.RequiredDocumentsFacade;
@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final DocumentService documentService = new DocumentServiceImpl(new DocumentImplDAO());
+    private static final DocumentRequestService documentService = new DocumentRequestServiceImpl(new DocumentRequestImplDAO());
 
     public static void main(String[] args) {
         DatabaseConnection.setUpTables();
@@ -80,8 +80,8 @@ public class Main {
     }
 
     private static void showDocumentRequestMenu() {
-        DocumentService documentService = new DocumentServiceImpl(new DocumentImplDAO());
-        DocumentFacade documentFacade = new DocumentFacadeImpl(documentService);
+        DocumentRequestService documentService = new DocumentRequestServiceImpl(new DocumentRequestImplDAO());
+        DocumentRequestFacade documentFacade = new DocumentRequestFacadeImpl(documentService);
         boolean running = true;
 
         while (running) {

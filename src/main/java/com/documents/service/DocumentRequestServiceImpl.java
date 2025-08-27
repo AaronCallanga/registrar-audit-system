@@ -1,6 +1,6 @@
 package com.documents.service;
 
-import com.documents.dao.DocumentDAO;
+import com.documents.dao.DocumentRequestDAO;
 import com.documents.model.Document;
 import com.exceptions.EntityPersistenceException;
 import com.exceptions.ResourceNotFoundException;
@@ -8,11 +8,11 @@ import com.exceptions.ResourceNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DocumentServiceImpl implements DocumentService {
+public class DocumentRequestServiceImpl implements DocumentRequestService {
 
-    private final DocumentDAO documentDAO;
+    private final DocumentRequestDAO documentDAO;
 
-    public DocumentServiceImpl(DocumentDAO documentDAO) {
+    public DocumentRequestServiceImpl(DocumentRequestDAO documentDAO) {
         this.documentDAO = documentDAO;
     }
 

@@ -12,6 +12,8 @@
                           Example: "Admin John released document #23 at 2025-08-16 13:45".
 7. Implement Auditing for Enrollment too
 11. enroll student, get the id of the student, use it to save required documents
+12. Create some validations, request date, contact regex, name not blank etc
+
 
 Enrolling:
 Student <- Many to one with the Subjects (Based on year level and semester)
@@ -20,9 +22,22 @@ Student <- Many to one with the Subjects (Based on year level and semester)
   When an admin adds a student to a year + semester, the required subjects (with units) are automatically persisted for that student.
 - When students finished a semester, delete the subjects linked and insert the new set of subject base on the year level and semester
 
+
+
+
 // Create pseudocode, present only kayang tapusin
 // Just explain the process of the system
 // TO PASS:
 // Compilation of codes + output
 
 
+sir
+complex nung enrollment lalo na sa subject at mga units
+iba-iba per semester, year level, at course
+napag-usapan namin sir ni mylene, focus na lang sa auditing ng mga documents
+mga document na kailangan ipasa sa enrollment, requesting of documents, (monthly report, scheduled job)
+
+For your Registrar-Auditing System, you can use this for:
+    - Reminder emails: students missing required documents. (scheduled)
+    - Notification emails: monthly reports sent automatically to registrar/admin.  (scheduled)
+    - Send confirmation email: when student submitted required documents / request documents get released

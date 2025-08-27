@@ -70,18 +70,7 @@ public class RequiredDocumentsFacadeImpl implements RequiredDocumentsFacade {
         String documentType = UserInputUtil.getStringInput("Enter document type to submit: ");
 
         try {
-            List<RequiredDocument> requiredDocuments = requiredDocumentService.getRequiredDocumentsByStudentId(studentId);
-            boolean isDocumentRequired = requiredDocuments.stream()
-                                                          .anyMatch(requiredDocument ->
-                                                                  requiredDocument.getDocumentType().equalsIgnoreCase(documentType)
-                                                                    );
-            if (isDocumentRequired) {
-                requiredDocumentService.submitRequiredDocument(studentId, documentType);
-                System.out.println("Document '" + documentType + "' submitted successfully for student ID: " + studentId);
-            } else {
-                System.out.println("Document '" + documentType + "' is not required for student ID: " + studentId);
-            }
-
+            requiredDocumentService.submitRequiredDocument(studentId, documentType);
         } catch (Exception e) {
             System.out.println("Error submitting document: " + e.getMessage());
         }

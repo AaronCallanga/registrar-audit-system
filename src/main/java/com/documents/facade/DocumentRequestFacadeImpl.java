@@ -1,16 +1,16 @@
 package com.documents.facade;
 
 import com.documents.model.Document;
-import com.documents.service.DocumentService;
+import com.documents.service.DocumentRequestService;
 import com.util.UserInputUtil;
 
 import java.util.List;
 
-public class DocumentFacadeImpl implements DocumentFacade {
+public class DocumentRequestFacadeImpl implements DocumentRequestFacade {
 
-    private final DocumentService documentService;
+    private final DocumentRequestService documentService;
 
-    public DocumentFacadeImpl(DocumentService documentService) {
+    public DocumentRequestFacadeImpl(DocumentRequestService documentService) {
         this.documentService = documentService;
     }
 

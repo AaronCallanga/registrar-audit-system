@@ -5,7 +5,7 @@ import com.documents.model.Document;
 
 import java.util.List;
 
-public interface DocumentDAO extends BaseDAO<Document> {
+public interface DocumentRequestDAO extends BaseDAO<Document> {
     List<Document> findOngoingRequests();
     List<Document> findCompletedRequests();
 }
