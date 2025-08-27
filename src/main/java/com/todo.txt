@@ -11,10 +11,15 @@
                           Purpose: Track what actions admins took (created request, updated, released, deleted).
                           Example: "Admin John released document #23 at 2025-08-16 13:45".
 7. Implement Auditing for Enrollment too
-8. MAke student number a random uuid
-9. If a student year level updated, it should delete all the required documents and change it to a specific year level
-       ex: 1st year -> TOR, BC      changed to 2nd Year -> TOR, BC, GOOD MORAL, F138
-       delete this ^                                then save this instead ^        -> linked to user
-10. implement setUpTables in databaseConnection, create objects of each service dao/service and call the create table
 11. enroll student, get the id of the student, use it to save required documents
-12. Create a enrollment + student facade. for menu
+
+Enrolling:
+Student <- Many to one with the Subjects (Based on year level and semester)
+- Subjects are persist (when student enrolled)
+- The admin enrolls students manually (not the students themselves).
+  When an admin adds a student to a year + semester, the required subjects (with units) are automatically persisted for that student.
+- When students finished a semester, delete the subjects linked and insert the new set of subject base on the year level and semester
+
+
+
+
