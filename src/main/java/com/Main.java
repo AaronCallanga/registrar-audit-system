@@ -22,9 +22,6 @@ import com.util.UserInputUtil;
 import java.util.Scanner;
 
 public class Main {
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final DocumentRequestService documentService = new DocumentRequestServiceImpl(new DocumentRequestImplDAO());
-
     public static void main(String[] args) {
         DatabaseConnection.setUpTables();
         boolean running = true;
@@ -38,26 +35,30 @@ public class Main {
             String pass = UserInputUtil.getStringInput("Enter your password: ");
             
             if (uname.equals(username) && pass.equals(password)) {
+                isAuthenticated = true;
                 break;
             } else {
                 System.out.println("Invalid username or password");
                 System.out.println("Please try again");
             }
         }
-
-        while (running) {
-            DisplayUtil.printInitialMenu();
-            choice = UserInputUtil.getIntInput("Enter your choice: ");
-            switch (choice) {
-                case 1 -> showEnrollmentDocumentMenu();
-                case 2 -> showDocumentRequestMenu();
-                case 3 -> {
-                    running = false;
-                    System.out.println("Exiting system. Goodbye!");
+        
+        if (isAuthenticated) {
+            while (running) {
+                DisplayUtil.printInitialMenu();
+                choice = UserInputUtil.getIntInput("Enter your choice: ");
+                switch (choice) {
+                    case 1 -> showEnrollmentDocumentMenu();
+                    case 2 -> showDocumentRequestMenu();
+                    case 3 -> {
+                        running = false;
+                        System.out.println("Exiting system. Goodbye!");
+                    }
+                    default -> System.out.println("Invalid choice. Please try again.");
                 }
-                default -> System.out.println("Invalid choice. Please try again.");
             }
         }
+
     }
 
     private static void showEnrollmentDocumentMenu() {
