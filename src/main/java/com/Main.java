@@ -30,9 +30,10 @@ public class Main {
         boolean running = true;
         int choice;
         boolean isAuthenticated = false;
-        String username = "admin", password = "admin";
+        String username = "admin", password = "admin";  // Hardcoded admin user
 
         while (!isAuthenticated) {
+            System.out.println("\n=== Login ===");
             String uname = UserInputUtil.getStringInput("Enter your username: ");
             String pass = UserInputUtil.getStringInput("Enter your password: ");
             
