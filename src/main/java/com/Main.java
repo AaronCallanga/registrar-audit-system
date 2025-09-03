@@ -29,6 +29,21 @@ public class Main {
         DatabaseConnection.setUpTables();
         boolean running = true;
         int choice;
+        boolean isAuthenticated = false;
+        String username = "admin", password = "admin";
+
+        while (!isAuthenticated) {
+            String uname = UserInputUtil.getStringInput("Enter your username: ");
+            String pass = UserInputUtil.getStringInput("Enter your password: ");
+            
+            if (uname.equals(username) && pass.equals(password)) {
+                break;
+            } else {
+                System.out.println("Invalid username or password");
+                System.out.println("Please try again");
+            }
+        }
+
         while (running) {
             DisplayUtil.printInitialMenu();
             choice = UserInputUtil.getIntInput("Enter your choice: ");

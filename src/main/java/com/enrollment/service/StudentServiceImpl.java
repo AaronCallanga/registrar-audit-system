@@ -29,6 +29,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student enrollStudent(String name, String yearLevel, String program, String contact) {
+
         Student student = Student.builder()
                                  .studentNumber("STU-" + UUID.randomUUID().toString().replace("-", "").substring(0, 10))
                                  .name(name)
