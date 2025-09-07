@@ -19,8 +19,6 @@ import com.enrollment.service.StudentServiceImpl;
 import com.util.DisplayUtil;
 import com.util.UserInputUtil;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         DatabaseConnection.setUpTables();
@@ -101,6 +99,7 @@ public class Main {
         DocumentRequestFacade documentFacade = new DocumentRequestFacadeImpl(documentService);
         boolean running = true;
 
+        // FOR DOCUMENT REQUEST MENU
         while (running) {
             DisplayUtil.printMenuDocumentRequest();
             int choice = UserInputUtil.getIntInput("Enter your choice: ");
@@ -123,12 +122,4 @@ public class Main {
             }
         }
     }
-
-    // ==========================
-    // Utility methods
-    // ==========================
-
-
-
-
 }
